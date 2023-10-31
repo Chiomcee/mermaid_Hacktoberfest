@@ -46,3 +46,5 @@ stats/
 
 demos/dev/**
 !/demos/dev/example.html
+
+venv
