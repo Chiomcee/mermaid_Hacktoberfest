@@ -15,13 +15,14 @@ graph LR
 
 ## 1. Checkout a git branch
 
-Mermaid uses a [Git Flow](https://guides.github.com/introduction/flow/)–inspired approach to branching.
+* Mermaid uses a [Git Flow](https://guides.github.com/introduction/flow/)–inspired approach to branching.
 
-Development is done in the `develop` branch.
 
-Once development is done we create a `release/vX.X.X` branch from `develop` for testing.
+* Development is done in the `develop` branch.
 
-Once the release happens we add a tag to the `release` branch and merge it with `master`. The live product and on-line documentation are what is in the `master` branch.
+* Once development is done we create a `release/vX.X.X` branch from `develop` for testing.
+
+* Once the release happens we add a tag to the `release` branch and merge it with `master`. The live product and on-line documentation are what is in the `master` branch.
 
 **All new work should be based on the `develop` branch.**
 
@@ -56,33 +57,33 @@ If your work is specific to a single diagram type, it is a good idea to put the 
 
 ## 2. Write Tests
 
-Tests ensure that each function, module, or part of code does what it says it will do. This is critically
+* Tests ensure that each function, module, or part of code does what it says it will do. This is critically
 important when other changes are made to ensure that existing code is not broken (no regression).
 
-Just as important, the tests act as _specifications:_ they specify what the code does (or should do).
+* Just as important, the tests act as _specifications:_ they specify what the code does (or should do).
 Whenever someone is new to a section of code, they should be able to read the tests to get a thorough understanding of what it does and why.
 
-If you are fixing a bug, you should add tests to ensure that your code has actually fixed the bug, to specify/describe what the code is doing, and to ensure the bug doesn't happen again.
+* If you are fixing a bug, you should add tests to ensure that your code has actually fixed the bug, to specify/describe what the code is doing, and to ensure the bug doesn't happen again.
 (If there had been a test for the situation, the bug never would have happened in the first place.)
 You may need to change existing tests if they were inaccurate.
 
-If you are adding a feature, you will definitely need to add tests. Depending on the size of your feature, you may need to add integration tests.
+* If you are adding a feature, you will definitely need to add tests. Depending on the size of your feature, you may need to add integration tests.
 
 ### Unit Tests
 
-Unit tests are tests that test a single function or module. They are the easiest to write and the fastest to run.
+* Unit tests are tests that test a single function or module. They are the easiest to write and the fastest to run.
 
-Unit tests are mandatory all code except the renderers. (The renderers are tested with integration tests.)
+* Unit tests are mandatory all code except the renderers. (The renderers are tested with integration tests.)
 
-We use [Vitest](https://vitest.dev) to run unit tests.
+* We use [Vitest](https://vitest.dev) to run unit tests.
 
-You can use the following command to run the unit tests:
+* You can use the following command to run the unit tests:
 
 ```sh
 pnpm test
 ```
 
-When writing new tests, it's easier to have the tests automatically run as you make changes. You can do this by running the following command:
+* When writing new tests, it's easier to have the tests automatically run as you make changes. You can do this by running the following command:
 
 ```sh
 pnpm test:watch
@@ -90,19 +91,19 @@ pnpm test:watch
 
 ### Integration/End-to-End (e2e) tests
 
-These test the rendering and visual appearance of the diagrams.
+* These test the rendering and visual appearance of the diagrams.
 This ensures that the rendering of that feature in the e2e will be reviewed in the release process going forward. Less chance that it breaks!
 
-To start working with the e2e tests:
+* To start working with the e2e tests:
 
 1. Run `pnpm dev` to start the dev server
 2. Start **Cypress** by running `pnpm cypress:open`.
 
-The rendering tests are very straightforward to create. There is a function `imgSnapshotTest`, which takes a diagram in text form and the mermaid options, and it renders that diagram in Cypress.
+* The rendering tests are very straightforward to create. There is a function `imgSnapshotTest`, which takes a diagram in text form and the mermaid options, and it renders that diagram in Cypress.
 
-When running in CI it will take a snapshot of the rendered diagram and compare it with the snapshot from last build and flag it for review if it differs.
+* When running in CI it will take a snapshot of the rendered diagram and compare it with the snapshot from last build and flag it for review if it differs.
 
-This is what a rendering test looks like:
+* This is what a rendering test looks like:
 
 ```js
 it('should render forks and joins', () => {
@@ -133,29 +134,29 @@ it('should render forks and joins', () => {
 
 ## 3. Update Documentation
 
-If the users have no way to know that things have changed, then you haven't really _fixed_ anything for the users; you've just added to making Mermaid feel broken.
+* If the users have no way to know that things have changed, then you haven't really _fixed_ anything for the users; you've just added to making Mermaid feel broken.
 Likewise, if users don't know that there is a new feature that you've implemented, it will forever remain unknown and unused.
 
-The documentation has to be updated to users know that things have changed and added!
+* The documentation has to be updated to users know that things have changed and added!
 If you are adding a new feature, add `(v<MERMAID_RELEASE_VERSION>+)` in the title or description. It will be replaced automatically with the current version number when the release happens.
 
 eg: `# Feature Name (v<MERMAID_RELEASE_VERSION>+)`
 
-We know it can sometimes be hard to code _and_ write user documentation.
+* We know it can sometimes be hard to code _and_ write user documentation.
 
-Our documentation is managed in `packages/mermaid/src/docs`. Details on how to edit is in the [Contributing Documentation](#contributing-documentation) section.
+* Our documentation is managed in `packages/mermaid/src/docs`. Details on how to edit is in the [Contributing Documentation](#contributing-documentation) section.
 
-Create another issue specifically for the documentation.  
+* Create another issue specifically for the documentation.  
 You will need to help with the PR, but definitely ask for help if you feel stuck.
 When it feels hard to write stuff out, explaining it to someone and having that person ask you clarifying questions can often be 80% of the work!
 
-When in doubt, write up and submit what you can. It can be clarified and refined later. (With documentation, something is better than nothing!)
+* When in doubt, write up and submit what you can. It can be clarified and refined later. (With documentation, something is better than nothing!)
 
 ## 4. Submit your pull request
 
 **[TODO - PR titles should start with (fix | feat | ....)]**
 
-We make all changes via Pull Requests (PRs). As we have many Pull Requests from developers new to Mermaid, we have put in place a process wherein _knsv, Knut Sveidqvist_ is in charge of the final release process and the active maintainers are in charge of reviewing and merging most PRs.
+* We make all changes via Pull Requests (PRs). As we have many Pull Requests from developers new to Mermaid, we have put in place a process wherein _knsv, Knut Sveidqvist_ is in charge of the final release process and the active maintainers are in charge of reviewing and merging most PRs.
 
 - PRs will be reviewed by active maintainers, who will provide feedback and request changes as needed.
 - The maintainers will request a review from knsv, if necessary.
